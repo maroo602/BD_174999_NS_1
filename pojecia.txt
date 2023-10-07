@@ -1,0 +1,8 @@
+rekordy - wiersze w tabeli,
+atrybuty - kolumna majaca identyfikator,
+klucz glowny - kolumna bądź zestaw kolumn, które zapewniają unikatowość każdego wiersza w tabeli,
+klucz obcy - kolumna lub zbior kolumn, który jest kluczem głównym w innej tabeli,
+relacje - zaleznosci miedzy tabelami
+1..1 jeden do jednego - jednemu rekordowi pierwszej tabeli jest przyporzadkowany dokladnie jeden rekord drugiej tabeli, a drugiej tylko 1 rekord,
+1..* jeden do wielu - jednemu rekordowi pierwszej tabeli jest przyporzadkowane wiele rekordow drugiej tabeli, a drugiej tylko 1 rekord,
+*..* wiele do wielu - jednemu rekordowi pierwszej tabeli jest przyporzadkowane wiele rekordow drugiej tabeli, a drugiej rowniez wiele rekordow pierwszej tabeli ,
