@@ -1,0 +1,35 @@
+1.1
+create table postac
+    -> (id_postaci int AUTO_INCREMENT,
+    -> nazwa varchar(40) NOT NULL,
+    -> rodzaj enum('wiking', 'ptak', 'kobieta'),
+    -> data_ur DATE,
+    -> wiek INT UNSIGNED,
+    -> PRIMARY KEY (id_postaci));
+1.2
+insert into postac (nazwa, rodzaj, data_ur, wiek) VALUES ('Bjorn', 'wiking', '1990-12-12', '33');
+insert into postac (nazwa, rodzaj, data_ur, wiek) VALUES ('drozd', 'ptak', '2012-11-9', '11');
+insert into postac (nazwa, rodzaj, data_ur, wiek) VALUES ('tesciowa', 'kobieta', '1937-01-09', '86');
+
+1.3
+update postac set wiek='88' WHERE nazwa='tesciowa';
+update postac set data_ur='1935-01-09' WHERE nazwa='tesciowa';
+
+2.1
+CREATE TABLE walizka (id_walizki int AUTO_INCREMENT, id_wlasciciela int, pojemnosc int unsigned, kolor enum('rozowy', 'czerwony', 'teczowy', 'zolty'), FOREIGN KEY (id_wlasciciela) REFERENCES postac(id_postaci) ON DELETE CASCADE, PRIMARY KEY (id_walizki));
+
+2.2
+alter table walizka alter column kolor set default 'rozowy';
+2.3
+insert into walizka (id_wlasciciela, pojemnosc, kolor) VALUES ('1', '100', 'czerwony');	
+insert into walizka (id_wlasciciela, pojemnosc, kolor) VALUES ('3', '1000', 'teczowy');
+3.1
+CREATE TABLE izba (adres_budynku varchar(40), nazwa_izby varchar(40), metraz int unsigned, wlasciciel int, PRIMARY KEY(adres_budynku, nazwa_izby), FOREIGN KEY (wlasciciel) REFERENCES bjorn(id_postaci) on delete set null); 
+
+-Zadanie dodatkowe-
+alter table bjorn rename postac;
+
+3.2
+alter table izba modify kolor_izby varchar(30) DEFAULT 'czarny' after metraz;
+
+ 
