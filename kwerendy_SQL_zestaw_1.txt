@@ -32,4 +32,38 @@ alter table bjorn rename postac;
 3.2
 alter table izba modify kolor_izby varchar(30) DEFAULT 'czarny' after metraz;
 
- 
+4.1
+CREATE TABLE przetwory(id_przetworu int, rok_produkcji YEAR DEFAULT (1654),id_wykonawcy int, zawartosc varchar(255), dodatek varchar(255) DEFAULT 'papryczka chili', id_konsumenta int, PRIMARY KEY(id_przetworu), FOREIGN KEY (id_wykonawcy) REFERENCES postac(id_postaci), FOREIGN KEY (id_konsumenta) REFERENCES postac(id_postaci));
+4.2
+insert into przetwory(id_przetworu,  rok_produkcji, zawartosc) values (1, 1992, 'bigos');
+
+
+
+5.1
+insert into postac (nazwa, rodzaj, data_ur, wiek) VALUES ('Ivar', 'wiking', '1985-08-05', '38');
+insert into postac (nazwa, rodzaj, data_ur, wiek) VALUES ('Eivor', 'wiking', '1999-05-01', '24');
+insert into postac (nazwa, rodzaj, data_ur, wiek) VALUES ('Andrzej', 'wiking', '1992-11-19', '33');
+insert into postac (nazwa, rodzaj, data_ur, wiek) VALUES ('Roman', 'wiking', '1969-03-12', '54');
+insert into postac (nazwa, rodzaj, data_ur, wiek) VALUES ('Krystian', 'wiking', '1996-06-20', '27');
+
+5.2
+CREATE TABLE statek (nazwa_statku INT PRIMARY KEY, rodzaj_statku ENUM('typ1', 'typ2', 'typ3'), data_wodowania DATE, max_ladownosc int unsigned);
+
+5.3
+INSERT INTO statek (nazwa_statku, rodzaj_statku, data_wodowania, max_ladownosc)
+VALUES (1, 'typ1', '2023-01-01', 5000), (2, 'typ2', '2022-08-15', 3000);
+5.4
+ALTER TABLE postac ADD funkcja VARCHAR(100);
+5.5
+UPDATE postac SET funkcja = 'kapitan' WHERE id_postaci = 1;
+5.6
+ALTER TABLE postac ADD COLUMN statek_id INT, ADD FOREIGN KEY (statek_id) REFERENCES statek(nazwa_statku);
+5.7
+UPDATE postac SET statek_id = 1 WHERE rodzaj='wiking';
+
+UPDATE postac SET statek_id = 2 WHERE rodzaj='ptak';
+
+5.8
+ALTER TABLE izba DROP COLUMN spizarnia;
+5.9
+DROP TABLE izba;
