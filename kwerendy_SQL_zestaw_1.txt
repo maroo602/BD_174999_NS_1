@@ -67,3 +67,26 @@ UPDATE postac SET statek_id = 2 WHERE rodzaj='ptak';
 ALTER TABLE izba DROP COLUMN spizarnia;
 5.9
 DROP TABLE izba;
+
+ZESTAW 2
+
+1.1
+DELETE FROM postac WHERE wiek>38;
+1.2
+ALTER TABLE walizka DROP CONSTRAINT walizka_ibfk_1;
+ALTER TABLE przetwory DROP CONSTRAINT przetwory_ibfk_1;
+ALTER TABLE przetwory DROP CONSTRAINT przetwory_ibfk_2;
+ALTER TABLE postac DROP id_postaci;
+2.1
+ALTER TABLE postac ADD COLUMN pesel CHAR(11);
+UPDATE postac SET pesel=1 WHERE nazwa="bjorn";
+UPDATE postac SET pesel=2 WHERE nazwa="drozd";
+UPDATE postac SET pesel=3 WHERE nazwa="andrzej";
+UPDATE postac SET pesel=4 WHERE nazwa="eivor";
+UPDATE postac SET pesel=5 WHERE nazwa="ivar";
+UPDATE postac SET pesel=6 WHERE nazwa="Krystian";
+ALTER TABLE postac MODIFY COLUMN pesel VARCHAR(11) PRIMARY KEY;
+2.2
+ALTER TABLE postac MODIFY COLUMN rodzaj enum ('wiking','ptak','kobieta','syrena') DEFAULT NULL;
+
+
