@@ -88,5 +88,24 @@ UPDATE postac SET pesel=6 WHERE nazwa="Krystian";
 ALTER TABLE postac MODIFY COLUMN pesel VARCHAR(11) PRIMARY KEY;
 2.2
 ALTER TABLE postac MODIFY COLUMN rodzaj enum ('wiking','ptak','kobieta','syrena') DEFAULT NULL;
-
-
+INSERT INTO postac (nazwa, rodzaj, data_ur, wiek, pesel)  VALUES ('Gertruda Nieszczera', 'syrena', '1840-02-21', 183, 7);
+3.1
+UPDATE postac SET statek_id=1 WHERE nazwa="%a%";
+3.2
+UPDATE statek SET max_ladownosc= max_ladownosc*0.7 WHERE data_wodowania>'1900-01-01' AND data_wodowania>'2001-01-01';
+3.3
+SELECT * FROM postac WHERE wiek>=1000;
+4.1
+insert into postac(nazwa,pesel) VALUES ('Waz Loko',8);
+4.2
+CREATE TABLE Marynarz LIKE postac;
+4.3
+INSERT INTO Marynarz SELECT * FROM postac WHERE statek_id IS NOT NULl;
+5.1
+ UPDATE postac SET statek_id=0 WHERE statek_id=1 OR statek_id=2;
+5.2
+DELETE FROM postac WHERE nazwa='Krystian';
+5.3
+DELETE FROM statek;
+5.4
+DROP TABLE statek;
